@@ -15,6 +15,7 @@ class GoalsVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var undoView: UIView!
+    @IBOutlet weak var undoBtn: UIButton!
     
     var goals: [Goal] = []
     
@@ -23,7 +24,8 @@ class GoalsVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isHidden = false
-        undoView.isHidden = true
+        undoView.alpha = 0.0
+        undoBtn.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,9 +52,9 @@ class GoalsVC: UIViewController {
     }
     
     @IBAction func undoBtnWasPressed(_ sender: Any) {
+        undoView.alpha = 0.0
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
         managedContext.undoManager?.undo()
-        undoView.isHidden = true
         fetchCoreDataObjects()
         tableView.reloadData()
     }
@@ -109,6 +111,22 @@ extension GoalsVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension GoalsVC {
+    
+    func fadeOutView(view: UIView) {
+        
+        UIView.animate(withDuration: 3.0, delay: 1, options: .curveEaseOut, animations: {
+            view.alpha = 0.0
+        }, completion: { (true) in
+            self.undoBtn.isHidden = true
+        })
+    }
+    
+    func fadeInView(view: UIView) {
+        UIView.animate(withDuration: 3.0) {
+            view.alpha = 1.0
+        }
+    }
+    
     func setProgress(atIndexPath indexPath: IndexPath) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
 
@@ -122,7 +140,6 @@ extension GoalsVC {
         
         do {
             try managedContext.save()
-            print("Successfully set progress!")
         } catch {
             debugPrint("Could not set progress: \(error.localizedDescription)")
         }
@@ -135,8 +152,9 @@ extension GoalsVC {
         
         do {
             try managedContext.save()
-            undoView.isHidden = false
-            print("Successfully removed goal!")
+            undoBtn.isHidden = false
+            fadeInView(view: undoView)
+            fadeOutView(view: undoView)
         } catch {
             debugPrint("Could not remove: \(error.localizedDescription)")
         }
@@ -149,7 +167,6 @@ extension GoalsVC {
         
         do {
             goals = try managedContext.fetch(fetchRequest)
-            print("Successfully fetched data.")
             completion(true)
         } catch {
             debugPrint("Could not fetch: \(error.localizedDescription)")
@@ -157,16 +174,3 @@ extension GoalsVC {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

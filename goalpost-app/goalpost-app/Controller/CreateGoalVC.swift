@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateGoalVC: UIViewController, UITextViewDelegate{
+class CreateGoalVC: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var goalTextView: UITextView!
     @IBOutlet weak var shortTermBtn: UIButton!
@@ -30,7 +30,11 @@ class CreateGoalVC: UIViewController, UITextViewDelegate{
             goalTextView.resignFirstResponder()
             return false
         }
-        return true
+        
+        let currentText = goalTextView.text as NSString
+        let updatedText = currentText.replacingCharacters(in: range, with: text)
+            
+        return updatedText.characters.count <= 40
     }
     
     @IBAction func shortTermBtnWasPressed(_ sender: Any) {
