@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateGoalVC: UIViewController, UITextViewDelegate {
+class CreateGoalVC: UIViewController, UITextViewDelegate{
 
     @IBOutlet weak var goalTextView: UITextView!
     @IBOutlet weak var shortTermBtn: UIButton!
@@ -23,6 +23,14 @@ class CreateGoalVC: UIViewController, UITextViewDelegate {
         shortTermBtn.setSelectedColor()
         longTermBtn.setDeselectedColor()
         goalTextView.delegate = self
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            goalTextView.resignFirstResponder()
+            return false
+        }
+        return true
     }
     
     @IBAction func shortTermBtnWasPressed(_ sender: Any) {
