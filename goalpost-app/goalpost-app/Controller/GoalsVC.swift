@@ -14,6 +14,7 @@ let appDelegate = UIApplication.shared.delegate as? AppDelegate
 class GoalsVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var undoView: UIView!
     
     var goals: [Goal] = []
     
@@ -22,6 +23,7 @@ class GoalsVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isHidden = false
+        undoView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +47,14 @@ class GoalsVC: UIViewController {
     @IBAction func addGoalBtnWasPressed(_ sender: Any) {
         guard let createGoalVC = storyboard?.instantiateViewController(withIdentifier: "CreateGoalVC") else { return }
         presentDetail(createGoalVC)
+    }
+    
+    @IBAction func undoBtnWasPressed(_ sender: Any) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        managedContext.undoManager?.undo()
+        undoView.isHidden = true
+        fetchCoreDataObjects()
+        tableView.reloadData()
     }
     
 }
@@ -120,11 +130,12 @@ extension GoalsVC {
     
     func removeGoal(atIndexPath indexPath: IndexPath) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        
+        managedContext.undoManager = UndoManager()
         managedContext.delete(goals[indexPath.row])
         
         do {
             try managedContext.save()
+            undoView.isHidden = false
             print("Successfully removed goal!")
         } catch {
             debugPrint("Could not remove: \(error.localizedDescription)")
