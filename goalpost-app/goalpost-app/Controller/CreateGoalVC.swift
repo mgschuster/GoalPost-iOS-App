@@ -14,6 +14,7 @@ class CreateGoalVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var shortTermBtn: UIButton!
     @IBOutlet weak var longTermBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var characterCount: UILabel!
     
     var goalType: GoalType = .shortTerm
     
@@ -23,6 +24,7 @@ class CreateGoalVC: UIViewController, UITextViewDelegate {
         shortTermBtn.setSelectedColor()
         longTermBtn.setDeselectedColor()
         goalTextView.delegate = self
+        
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -33,7 +35,7 @@ class CreateGoalVC: UIViewController, UITextViewDelegate {
         
         let currentText = goalTextView.text as NSString
         let updatedText = currentText.replacingCharacters(in: range, with: text)
-            
+        
         return updatedText.characters.count <= 40
     }
     
