@@ -114,7 +114,7 @@ extension GoalsVC {
     
     func fadeOutView(view: UIView) {
         
-        UIView.animate(withDuration: 1.5, delay: 2.0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1.0, delay: 1.5, options: .curveEaseOut, animations: {
             view.alpha = 0.0
         }, completion: { (true) in
             self.undoBtn.isHidden = true
