@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,15 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main image" translatesAutoresizingMaskIntoConstraints="NO" id="3Mr-N2-muD">
-                                <rect key="frame" x="35" y="109" width="250" height="250"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FINAL" translatesAutoresizingMaskIntoConstraints="NO" id="3Mr-N2-muD">
+                                <rect key="frame" x="47.5" y="121.5" width="225" height="225"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="4de-3y-HvG"/>
-                                    <constraint firstAttribute="width" constant="250" id="gCK-F1-SpE"/>
+                                    <constraint firstAttribute="height" constant="225" id="4de-3y-HvG"/>
+                                    <constraint firstAttribute="width" constant="225" id="gCK-F1-SpE"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.41816991567611694" green="0.73990803956985474" blue="0.39117717742919922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3Mr-N2-muD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-50" id="Vgt-RZ-fwb"/>
                             <constraint firstItem="3Mr-N2-muD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="f2i-K3-1Mb"/>
@@ -39,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="main image" width="630" height="630"/>
+        <image name="FINAL" width="1080" height="1080"/>
     </resources>
 </document>
